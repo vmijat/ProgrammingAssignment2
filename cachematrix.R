@@ -1,15 +1,55 @@
-## Put comments here that give an overall description of what your
-## functions do
+## The function makeCacheMatrix is creating a matrix inverse
+# matrix inverse is a costly computation.  this function makes the 
+#inversion process cached
 
-## Write a short comment describing this function
+
+
+## makeCacheMatrix function returns list of 4 functions
+# set
+# get
+# setmean
+# getmean
+
+# input to function makeCacheMatrix is always a function
 
 makeCacheMatrix <- function(x = matrix()) {
+        m <- NULL 
+        
+        set <- function(y) {
+                x <<- y  #pass it to global environment
+                m <<- NULL
+        }
+        
+        get <- function() x
+        
+        setinverse <- function(matrixX) m <<- matrixX #also pass to global environment
+        
+        getinverse <- function() m
+        
+        return(
+                list(set = set, 
+                     get = get,
+                     setmean = setmean,
+                     getmean = getmean)
+        )
 
 }
 
 
-## Write a short comment describing this function
+## this function returns a a matrix that is inverse of input x
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+        
+        m <- x$getinverse()
+        
+        if(!is.null(m)){
+                message("getting cached data")
+                return(m)
+        }
+        
+        data <- x$get()
+        m <- solve(data, ...)
+        x$setinverse(m)
+        m
+        
 }
