@@ -29,8 +29,8 @@ makeCacheMatrix <- function(x = matrix()) {
         return(
                 list(set = set, 
                      get = get,
-                     setmean = setmean,
-                     getmean = getmean)
+                     setinverse = setinverse,
+                     getinverse = getinverse)
         )
 
 }
