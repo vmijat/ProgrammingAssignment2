@@ -40,7 +40,7 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
         
-        m <- x$getinverse()
+        m <- x$getinverse() # - this would not work if x did not exist in the environment of makeCacheMatrix()
         
         if(!is.null(m)){
                 message("getting cached data")
